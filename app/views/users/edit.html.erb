@@ -39,7 +39,7 @@
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <% Ethnicity.top_five.each do |v| %>
        <p style="font-family:georgia; width:70%">
-         <input type="checkbox" name="ethnicities_text_area" value="<%= v.fetch(0).value %>">
+         <input type="checkbox" name="Ethnicity" value="<%= v.fetch(0).value %>">
          <%=  v.fetch(0).value %>
        </p>
      <% end %>
@@ -51,7 +51,7 @@
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <% Gender.top_five.each do |v| %>
        <p style="font-family:georgia; width:70%">
-         <input type="checkbox" name="genders_text_area" value="<%= v.fetch(0).value %>">
+         <input type="checkbox" name="Gender" value="<%= v.fetch(0).value %>">
          <%=  v.fetch(0).value %>
        </p>
      <% end %>
@@ -62,7 +62,7 @@
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <% Orientation.top_five.each do |v| %>
        <p style="font-family:georgia; width:70%">
-         <input type="checkbox" name="orientations_text_area" value="<%= v.fetch(0).value %>">
+         <input type="checkbox" name="Orientation" value="<%= v.fetch(0).value %>">
          <%=  v.fetch(0).value %>
        </p>
      <% end %>
