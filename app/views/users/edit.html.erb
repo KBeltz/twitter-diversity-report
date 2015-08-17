@@ -1,4 +1,4 @@
-<div class="form">  
+<div class="form">
   <p class="error">
     <% if flash[:errors] %>
     ERROR
@@ -9,15 +9,15 @@
     </ul>
     <% end %>
   </p>
-  
+
     <h2>Add or update your information: <span class="bluetext" font-family="georgia"><%= session[:screen_name] -%></span></h2>
   <br><br>
-  
+
   <%= form_for @user do |f| -%>
      <%= f.fields_for :user_answers, @single_answers do |u| %>
        <%= u.label :value, user_answer_field_label(u.object.field_value).upcase %>
        <%= u.hidden_field :answer_type %>
- 
+
        <% if u.object.answer_type == "Education" %>
          <%= u.text_field :value, style: "font-family:georgia;width: 70%", autofocus: true %><br>
          <label><em>OR CHOOSE AN OPTION FROM BELOW </em></label><br>
@@ -26,25 +26,28 @@
          <input type="radio" name="education1" value="post-secondary"> <span style="font-family:georgia"> Post-secondary</span><br>
          <input type="radio" name="education1" value="graduate"> <span style="font-family:georgia"> Graduate</span><br>
          <input type="radio" name="education1" value="post-graduate"> <span style="font-family:georgia"> Post-graduate</span><br><br>
-             
+
        <% else %>
         <%= u.number_field :value, style: "font-family:georgia;width: 70%" %><br>
-     
+
        <% end %>
      <% end %>
 
      <label>ETHNICITY/IES:</label>
+     <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <%= f.text_area :ethnicities_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
-   
+
      <label>GENDER/S:</label>
+     <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <%= f.text_area :genders_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
-   
+
      <label>ORIENTATION/S:</label>
+     <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <%= f.text_area :orientations_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
-   
+
      <%= f.submit "UPDATE USER", class: "button" %>
-   
-   
+
+
    <% end %>
- 
+
 </div>
