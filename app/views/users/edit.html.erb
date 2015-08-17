@@ -46,11 +46,25 @@
      <%= f.text_area :ethnicities_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
 
      <label>GENDER/S:</label>
+     <br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
+     <% Gender.top_five.each do |v| %>
+       <p style="font-family:georgia; width:70%">
+         <%= f.check_box :genders_text_area %>
+         <%=  v.fetch(0).value %>
+       </p>
+     <% end %>
      <%= f.text_area :genders_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
 
      <label>ORIENTATION/S:</label>
+     <br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
+     <% Orientation.top_five.each do |v| %>
+       <p style="font-family:georgia; width:70%">
+         <%= f.check_box :orientations_text_area %>
+         <%=  v.fetch(0).value %>
+       </p>
+     <% end %>
      <%= f.text_area :orientations_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
 
      <%= f.submit "UPDATE USER", class: "button" %>
