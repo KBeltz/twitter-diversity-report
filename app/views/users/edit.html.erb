@@ -34,7 +34,15 @@
      <% end %>
 
      <label>ETHNICITY/IES:</label>
+     <br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
+     <% Ethnicity.top_five.each do |v| %>
+       <p style="font-family:georgia; width:70%">
+         <%= f.check_box :ethnicities_text_area %>
+         <%=  v.fetch(0).value %>
+       </p>
+     <% end %>
+
      <%= f.text_area :ethnicities_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
 
      <label>GENDER/S:</label>
