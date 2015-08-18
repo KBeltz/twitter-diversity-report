@@ -35,5 +35,4 @@ class UserAnswer < ActiveRecord::Base
   def self.multi_answer_types
     ["Ethnicity", "Gender", "Orientation"]
   end
-
 end

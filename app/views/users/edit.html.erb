@@ -37,14 +37,14 @@
      <%= f.text_area :ethnicities_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
      <label><em>OR CHOOSE AN OPTION FROM BELOW </em></label><br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
-     <% Ethnicity.top_five.each do |v| %>
+     <% User.top_five_ethnicities.each do |v| %>
        <p style="font-family:georgia; width:70%">
-            <% if @user.ethnicities[0].value.include?(v.fetch(0).value) %>
-              <%= check_box_tag :ethnicities, v.fetch(0).value, :checked %>
+            <% if @user.ethnicities[0].value.include?(v) %>
+              <%= check_box_tag :ethnicities, v, :checked %>
             <% else %>
-              <%= check_box_tag :ethnicities, v.fetch(0).value %>
+              <%= check_box_tag :ethnicities, v %>
             <% end %>
-         <%=  f.label v.fetch(0).value %>
+         <%=  f.label v %>
        </p>
      <% end %>
 
