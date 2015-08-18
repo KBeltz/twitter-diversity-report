@@ -39,7 +39,11 @@
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <% Ethnicity.top_five.each do |v| %>
        <p style="font-family:georgia; width:70%">
-         <%= check_box_tag :ethnicities, v.fetch(0).value %>
+            <% if @user.ethnicities[0].value.include?(v.fetch(0).value) %>
+              <%= check_box_tag :ethnicities, v.fetch(0).value, :checked %>
+            <% else %>
+              <%= check_box_tag :ethnicities, v.fetch(0).value %>
+            <% end %>
          <%=  f.label v.fetch(0).value %>
        </p>
      <% end %>
