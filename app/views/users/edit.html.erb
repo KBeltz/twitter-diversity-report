@@ -39,11 +39,7 @@
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
      <% User.top_five_ethnicities.each do |v| %>
        <p style="font-family:georgia; width:70%">
-            <% if @user.ethnicities[0].value.include?(v) %>
-              <%= check_box_tag :ethnicities, v, :checked %>
-            <% else %>
-              <%= check_box_tag :ethnicities, v %>
-            <% end %>
+         <%= check_box_tag :ethnicities, v %>
          <%=  f.label v %>
        </p>
      <% end %>
@@ -52,14 +48,10 @@
      <%= f.text_area :genders_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
      <label><em>OR CHOOSE AN OPTION FROM BELOW </em></label><br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
-     <% Gender.top_five.each do |v| %>
+     <% User.top_five_genders.each do |v| %>
        <p style="font-family:georgia; width:70%">
-           <% if @user.genders[0].value.include?(v.fetch(0).value) %>
-             <%= check_box_tag :genders, v.fetch(0).value, :checked %>
-           <% else %>
-             <%= check_box_tag :genders, v.fetch(0).value %>
-           <% end %>
-         <%=  f.label v.fetch(0).value %>
+         <%= check_box_tag :genders, v %>
+         <%=  f.label v %>
        </p>
      <% end %>
 
@@ -67,14 +59,10 @@
      <%= f.text_area :orientations_text_area, style: "font-family:georgia; width: 70%", :cols => 10, :rows => 5 %><br>
      <label><em>OR CHOOSE AN OPTION FROM BELOW </em></label><br>
      <!-- automatically calculate the 5 most common responses and show those as check boxes while still leaving a free form text field for people to enter their own answers -->
-     <% Orientation.top_five.each do |v| %>
+     <% User.top_five_orientations.each do |v| %>
        <p style="font-family:georgia; width:70%">
-           <% if @user.orientations[0].value.include?(v.fetch(0).value) %>
-             <%= check_box_tag :orientations, v.fetch(0).value, :checked %>
-           <% else %>
-             <%= check_box_tag :orientations, v.fetch(0).value %>
-           <% end %>
-         <%=  f.label v.fetch(0).value %>
+         <%= check_box_tag :orientations, v %>
+         <%=  f.label v %>
        </p>
      <% end %>
 

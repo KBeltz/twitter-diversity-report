@@ -95,6 +95,39 @@ class User < ActiveRecord::Base
 
   ################### GENDER METHODS ##############################
 
+  #returns five most common values to populate checkbox fields in user add/edit form
+  def self.top_five_genders
+    genders_array = []
+    User.all.each do |u|
+      # returns array of individual genders arrays
+      genders_array << u.genders
+    end
+    # returns an array of ethnicity objects
+    genders_array = genders_array.flatten
+    values_array = []
+    genders_array.each do |a|
+      values_array << a.value
+    end
+    # returns an array of only the unique values from values_array
+    unique_array = values_array.uniq
+    genders_hash = {}
+    # returns a hash of each item in unique_array with a value representing how many times
+    # the key appears in the values_array
+    unique_array.each do |v|
+      b = values_array.count(v)
+      genders_hash[v] = b
+    end
+    # sorts hash by value in descending order and limits the number of
+    # key/value pairs to five
+    genders_hash = genders_hash.sort_by(&:last).reverse.take(5)
+    top_five_array = []
+    # returns an array of only the key values of the genders_hash
+    genders_hash.each do |k,v|
+      top_five_array << k
+    end
+    return top_five_array
+  end
+
   # Returns gender values for this user as an Array.
   def genders_as_array
     genders.map do |g|
@@ -120,6 +153,39 @@ class User < ActiveRecord::Base
   end
 
   ################### ORIENTATION METHODS ##############################
+
+  #returns five most common values to populate checkbox fields in user add/edit form
+  def self.top_five_orientations
+    orientations_array = []
+    User.all.each do |u|
+      # returns array of individual orientations arrays
+      orientations_array << u.orientations
+    end
+    # returns an array of ethnicity objects
+    orientations_array = orientations_array.flatten
+    values_array = []
+    orientations_array.each do |a|
+      values_array << a.value
+    end
+    # returns an array of only the unique values from values_array
+    unique_array = values_array.uniq
+    orientations_hash = {}
+    # returns a hash of each item in unique_array with a value representing how many times
+    # the key appears in the values_array
+    unique_array.each do |v|
+      b = values_array.count(v)
+      orientations_hash[v] = b
+    end
+    # sorts hash by value in descending order and limits the number of
+    # key/value pairs to five
+    orientations_hash = orientations_hash.sort_by(&:last).reverse.take(5)
+    top_five_array = []
+    # returns an array of only the key values of the orientations_hash
+    orientations_hash.each do |k,v|
+      top_five_array << k
+    end
+    return top_five_array
+  end
 
   # Returns orientation values for this user as an Array.
   def orientations_as_array
